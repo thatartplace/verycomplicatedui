@@ -33,6 +33,9 @@ class OverlayViewController: UIViewController {
         }
     }
     
+    var animator: UIViewPropertyAnimator?
+    var animation: (from: CGFloat, to: CGFloat) = (0, 0)
+    
     func nearest(n: CGFloat, among: [CGFloat]) -> CGFloat {
         var minD = CGFloat.infinity
         var r = n
@@ -62,6 +65,8 @@ class OverlayViewController: UIViewController {
         let ve = sender.velocity(in: view)
         
         switch sender.state {
+        case .began:
+            break
         case .changed:
             sender.setTranslation(CGPoint.zero, in: view)
             pan(dY: tr.y)
@@ -73,9 +78,13 @@ class OverlayViewController: UIViewController {
     }
     
     func animateTo(y: CGFloat) {
-        UIView.animate(withDuration: 0.5) {
-            self.y = y
-        }
+        animator = UIViewPropertyAnimator.runningPropertyAnimator(
+            withDuration: 0.5,
+            delay: 0,
+            options: [.curveEaseOut, .allowUserInteraction],
+            animations: {self.y = y},
+            completion: nil
+        )
     }
     
     func applyDrag(n: CGFloat) -> CGFloat {
