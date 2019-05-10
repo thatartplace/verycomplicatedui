@@ -317,6 +317,7 @@
                 <panGestureRecognizer minimumNumberOfTouches="1" id="Bfe-Wz-IPF">
                     <connections>
                         <action selector="panHandler:" destination="2Jy-5f-T5D" id="RXL-L5-A3P"/>
+                        <outlet property="delegate" destination="2Jy-5f-T5D" id="YbT-ZK-A3H"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>

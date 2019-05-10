@@ -25,16 +25,16 @@ class OverlayViewController: UIViewController {
     }
     var anchors: [CGFloat] = []
     
-    var y: CGFloat = 0 {
-        didSet {
-            var frame = animatedView.frame
-            frame.origin.y = y
-            animatedView.frame = frame
+    var y: CGFloat {
+        get {
+            return animatedView.frame.origin.y
+        }
+        set {
+            animatedView.frame.origin.y = newValue
         }
     }
     
     var animator: UIViewPropertyAnimator?
-    var animation: (from: CGFloat, to: CGFloat) = (0, 0)
     
     func nearest(n: CGFloat, among: [CGFloat]) -> CGFloat {
         var minD = CGFloat.infinity
@@ -65,9 +65,8 @@ class OverlayViewController: UIViewController {
         let ve = sender.velocity(in: view)
         
         switch sender.state {
-        case .began:
-            break
         case .changed:
+            animator?.stopAnimation(true)
             sender.setTranslation(CGPoint.zero, in: view)
             pan(dY: tr.y)
         case .ended:
@@ -78,10 +77,11 @@ class OverlayViewController: UIViewController {
     }
     
     func animateTo(y: CGFloat) {
+        animator?.stopAnimation(true)
         animator = UIViewPropertyAnimator.runningPropertyAnimator(
             withDuration: 0.5,
             delay: 0,
-            options: [.curveEaseOut, .allowUserInteraction],
+            options: [.curveEaseOut, .allowUserInteraction, .beginFromCurrentState],
             animations: {self.y = y},
             completion: nil
         )
