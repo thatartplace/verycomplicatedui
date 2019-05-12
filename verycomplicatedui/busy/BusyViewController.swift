@@ -9,9 +9,20 @@
 import UIKit
 
 
-class BusyViewController: UIViewController {
+class BusyViewController: UIViewController, ColorDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func setColor(_ color: UIColor) {
+        view.backgroundColor = color
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let overlayViewController = segue.destination as? OverlayViewController else {
+            preconditionFailure()
+        }
+        overlayViewController.delegate = self
     }
 }

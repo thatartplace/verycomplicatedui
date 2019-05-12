@@ -23,7 +23,7 @@ class OverlayViewController: UIViewController {
             maxY: view.bounds.height - insets.bottom
         )
     }
-    var anchors: [CGFloat] = []
+    var anchors: [CGFloat] = [500]
     
     var y: CGFloat {
         get {
@@ -31,10 +31,15 @@ class OverlayViewController: UIViewController {
         }
         set {
             animatedView.frame.origin.y = newValue
+            tableView.isScrollEnabled = newValue == 0
         }
     }
     
     var animator: UIViewPropertyAnimator?
+    
+    var delegate: ColorDelegate?
+    
+    @IBOutlet weak var tableView: UITableView!
     
     func nearest(n: CGFloat, among: [CGFloat]) -> CGFloat {
         var minD = CGFloat.infinity
@@ -110,5 +115,45 @@ class OverlayViewController: UIViewController {
 extension OverlayViewController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+func rgbForIndex(_ i: Int) -> (CGFloat, CGFloat, CGFloat) {
+    return (
+        CGFloat(i & 0b11) / 3,
+        CGFloat((i & 0b1100) >> 2) / 3,
+        CGFloat((i & 0b110000) >> 4) / 3
+    )
+}
+
+extension OverlayViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 64
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let (r, g, b) = rgbForIndex(indexPath.row)
+        let color = UIColor(red: r, green: g, blue: b, alpha: 1)
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OverlayTableCell") else {
+            preconditionFailure("no cells")
+        }
+        
+        cell.textLabel?.text = "\(r) \(g) \(b)"
+        cell.textLabel?.textColor = color
+        return cell
+    }
+}
+
+protocol ColorDelegate {
+    func setColor(_: UIColor)
+}
+
+extension OverlayViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let (r, g, b) = rgbForIndex(indexPath.row)
+        delegate?.setColor(UIColor(red: r, green: g, blue: b, alpha: 1))
     }
 }

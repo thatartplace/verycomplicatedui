@@ -15,6 +15,7 @@
 		2B3C135222832AC9003230FB /* verycomplicateduiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3C135122832AC9003230FB /* verycomplicateduiUITests.swift */; };
 		2B3C136422832FFF003230FB /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3C136322832FFF003230FB /* TodoViewController.swift */; };
 		2B3C136622833849003230FB /* TodoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3C136522833849003230FB /* TodoTableCell.swift */; };
+		2B3ECA772286443E0008F027 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3ECA762286443E0008F027 /* OverlayView.swift */; };
 		2B61F3DE22834D900062AA90 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61F3DD22834D900062AA90 /* Fetch.swift */; };
 		2B61F3E12283805D0062AA90 /* OverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61F3E02283805D0062AA90 /* OverlayViewController.swift */; };
 		2B61F3E3228380DC0062AA90 /* BusyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61F3E2228380DC0062AA90 /* BusyViewController.swift */; };
@@ -54,6 +55,7 @@
 		2B3C135322832AC9003230FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B3C136322832FFF003230FB /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		2B3C136522833849003230FB /* TodoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableCell.swift; sourceTree = "<group>"; };
+		2B3ECA762286443E0008F027 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		2B61F3DD22834D900062AA90 /* Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		2B61F3E02283805D0062AA90 /* OverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayViewController.swift; sourceTree = "<group>"; };
 		2B61F3E2228380DC0062AA90 /* BusyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				2B61F3E4228382EB0062AA90 /* PassthroughViews.swift */,
 				2BDB9F3522846A9A00ED60D6 /* OverlayViewController.swift */,
+				2B3ECA762286443E0008F027 /* OverlayView.swift */,
 			);
 			path = overlay;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B3ECA772286443E0008F027 /* OverlayView.swift in Sources */,
 				2B61F3DE22834D900062AA90 /* Fetch.swift in Sources */,
 				2B3C133222832AC9003230FB /* AppDelegate.swift in Sources */,
 				2B61F3E12283805D0062AA90 /* OverlayViewController.swift in Sources */,
